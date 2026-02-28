@@ -35,3 +35,25 @@ Time Complexity (Optimized): O(n)
 Space Complexity (Optimized): O(n)
 """
 
+class Solution(object):
+    def twoSum(self, nums, target):
+        # We use a dictionary to store previously seen numbers.
+        # Key   → number
+        # Value → its index in the array
+        seen = {} 
+        for i in range(len(nums)):
+            #we see if the difference between the target and current value, which will give us the required number to reach the target
+            diff = target - nums[i] 
+            if diff in seen:
+                # if the diff is in seen then we return the current index and the index of the diff which is stored in seen
+                # Dictionary lookup runs in average O(1) time, so this check is efficient.
+                return [seen[diff],i]
+            # if diff is not in seen then we add the current number as key and its index as the value to the seen dictionary
+            seen[nums[i]] = i
+
+# We check for the complement before inserting the current number.
+# This prevents using the same element twice.
+# If the current number equals its complement (e.g., target = 6, num = 3),
+# the first occurrence is already stored in `seen`, and we return its index.
+# If duplicates appear later, the dictionary simply updates the stored index,
+# which does not affect correctness because a valid pair would have already returned.
