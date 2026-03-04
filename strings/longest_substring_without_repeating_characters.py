@@ -37,27 +37,22 @@ Reason:
 # ----------------------
 # Brute Force Approach
 # ----------------------
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        count = 0
-        marker = 0
-        seen = []
-        for i in range(0,len(s)):
-            for j in range(i,len(s)):
-                if s[j] not in seen:
-                    marker = marker + 1
-                    seen.append(s[j])
-                    if marker > count:
-                        count = marker
-                else:
-                    marker = 0
-                    del seen[:]
-                    break
-        return count
+def lengthOfLongestSubstring(self, s):
+    count = 0
+    marker = 0
+    seen = []
+    for i in range(0,len(s)):
+        for j in range(i,len(s)):
+            if s[j] not in seen:
+                marker = marker + 1
+                seen.append(s[j])
+                if marker > count:
+                    count = marker
+            else:
+                marker = 0
+                del seen[:]
+                break
+    return count
 
 
 # ----------------------
